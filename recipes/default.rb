@@ -31,7 +31,7 @@ node['qmail']['remove_package_mtas'].each do |pkg|
   end
 end
 
-%w( gcc tar csh ucspi-tcp daemontools daemontools-run libldap2-dev libssl-dev git-core ).each do |pkg|
+%w( gcc tar csh ucspi-tcp daemontools daemontools-run libldap2-dev libssl-dev ).each do |pkg|
   package pkg do
     action :install
   end
