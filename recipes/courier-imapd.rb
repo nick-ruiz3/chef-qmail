@@ -46,7 +46,7 @@ end
 # Courier-imap Packages
 ###############################
 
-%w( courier-authdaemon courier-authlib courier-ldap courier-imap gamin ).each do |pkg|
+%w( courier-authdaemon courier-authlib courier-authlib-ldap courier-ldap courier-imap gamin ).each do |pkg|
   package pkg do
     action :install
   end
@@ -64,13 +64,13 @@ node['qmail']['remove_service_mtas'].each do |pkg|
     end
 end
 
-# template '/etc/courier/authldaprc' do
-#   source 'authldaprc.erb'
-#   owner 'daemon'
-#   group 'daemon'
-#   mode '0660'
-#   notifies :restart, 'service[courier-ldap]', :immediately
-# end
+template '/etc/courier/authldaprc' do
+  source 'authldaprc.erb'
+  owner 'daemon'
+  group 'daemon'
+  mode '0660'
+  notifies :restart, 'service[courier-ldap]', :immediately
+end
 
 template 'authdaemonrc' do
   path "#{courier_etc}/authdaemonrc"
@@ -86,10 +86,10 @@ template 'imapd' do
   notifies :restart, 'service[courier-imap]', :immediately
 end
 
-# service 'courier-ldap' do
-#   supports restart: true
-#   action [:restart]
-# end
+service 'courier-ldap' do
+  supports restart: true
+  action [:restart]
+end
 
 service 'courier-authdaemon' do
   supports restart: true, reload: false
