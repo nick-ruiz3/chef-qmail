@@ -87,8 +87,8 @@ template 'imapd' do
 end
 
 service 'courier-ldap' do
-  supports restart: true, reload: true
-  action [:restart, :reload]
+  supports restart: true
+  action [:restart]
 end
 
 service 'courier-authdaemon' do
