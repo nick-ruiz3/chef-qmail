@@ -46,7 +46,7 @@ end
 # Courier-imap Packages
 ###############################
 
-%w( courier-authdaemon courier-authlib  courier-ldap courier-imap gamin ).each do |pkg|
+%w( courier-authdaemon courier-authlib courier-authlib-ldap courier-ldap courier-imap gamin ).each do |pkg|
   package pkg do
     action :install
   end
@@ -76,14 +76,14 @@ template 'authdaemonrc' do
   path "#{courier_etc}/authdaemonrc"
   source 'authdaemonrc.erb'
   mode '0660'
-  notifies :reload, 'service[courier-authdaemon]', :immediately
+  notifies :restart, 'service[courier-authdaemon]', :immediately
 end
 
 template 'imapd' do
   path "#{courier_etc}/imapd"
   source 'imapd.erb'
   mode '0660'
-  notifies :reload, 'service[courier-imap]', :immediately
+  notifies :restart, 'service[courier-imap]', :immediately
 end
 
 service 'courier-ldap' do
