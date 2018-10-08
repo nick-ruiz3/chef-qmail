@@ -92,13 +92,13 @@ service 'courier-ldap' do
 end
 
 service 'courier-authdaemon' do
-  supports restart: true, reload: true
-  action [:restart, :reload]
+  supports restart: true
+  action [:restart]
 end
 
 service 'courier-imap' do
-  supports restart: true, reload: true
-  action [:restart, :reload]
+  supports restart: true
+  action [:restart]
 end
 
 if ! node['qmail']['imapd_enable'] then
