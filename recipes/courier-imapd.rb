@@ -92,7 +92,7 @@ service 'courier-ldap' do
 end
 
 service 'courier-authdaemon' do
-  supports restart: true
+  supports restart: true, reload: false
   action [:restart]
 end
 
