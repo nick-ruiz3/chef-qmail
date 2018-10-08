@@ -46,7 +46,7 @@ end
 # Courier-imap Packages
 ###############################
 
-%w( courier-authdaemon courier-authlib courier-authlib-ldap courier-ldap courier-imap gamin ).each do |pkg|
+%w( courier-authdaemon courier-authlib  courier-ldap courier-imap gamin ).each do |pkg|
   package pkg do
     action :install
   end
@@ -101,7 +101,7 @@ service 'courier-imap' do
   action [:restart, :reload]
 end
 
-if ! node['qmail']['imapd_enable'] then 
+if ! node['qmail']['imapd_enable'] then
 #  puts "   \033[31mDISABLING\033[0m\n"
   bash 'Courier-stop' do
     user 'root'
@@ -117,7 +117,7 @@ if node['qmail']['imapd_enable'] then
   bash 'Courier-start' do
     user 'root'
     code <<-EOH
-      update-rc.d courier-ldap enable ; update-rc.d courier-authdaemon enable ; update-rc.d courier-imap enable 
+      update-rc.d courier-ldap enable ; update-rc.d courier-authdaemon enable ; update-rc.d courier-imap enable
       service courier-ldap start ; service courier-authdaemon start ; service courier-imap start
     EOH
   end
