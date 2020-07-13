@@ -90,7 +90,7 @@ end
 
 service 'courier-ldap' do
   supports restart: true, start: true
-  retries 2
+  retries 4
   action [:restart, :start]
 end
 
