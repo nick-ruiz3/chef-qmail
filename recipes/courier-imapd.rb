@@ -70,8 +70,8 @@ template '/etc/courier/authldaprc' do
   owner 'daemon'
   group 'daemon'
   mode '0660'
-  notifies :start, 'service[courier-ldap]', :immediately
   notifies :restart, 'service[courier-ldap]', :immediately
+  notifies :start, 'service[courier-ldap]', :immediately
 end
 
 template 'authdaemonrc' do
