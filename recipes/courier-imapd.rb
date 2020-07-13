@@ -70,6 +70,7 @@ template '/etc/courier/authldaprc' do
   owner 'daemon'
   group 'daemon'
   mode '0660'
+  notifies :start, 'service[courier-ldap]', :immediately
   notifies :restart, 'service[courier-ldap]', :immediately
 end
 
@@ -88,8 +89,8 @@ template 'imapd' do
 end
 
 service 'courier-ldap' do
-  supports restart: true
-  action [:restart]
+  supports restart: true, start: true
+  action [:restart, :start]
 end
 
 service 'courier-authdaemon' do
