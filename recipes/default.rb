@@ -166,6 +166,7 @@ bash 'download-compilation-qmail-src-ldap' do
   git clone  https://github.com/sitle/qmail-src-ldap.git
   cd qmail-src-ldap
   make setup check
+  chmod a+x #{config_fast_command}
   ./#{config_fast_command}
   EOH
 end
