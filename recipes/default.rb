@@ -157,7 +157,7 @@ end
 ##################################
 # Download + Compilation de qmail + qmail-ldap
 ##################################
-config_fast_command = "config-fast #{node['qmail']['me']}"
+config_fast_command = "config-fast.sh #{node['qmail']['me']}"
 
 bash 'download-compilation-qmail-src-ldap' do
   user 'root'
