@@ -110,7 +110,7 @@ end
 
 user 'qmails' do
   gid 'qmail'
-  ui 64012
+  uid 64012
   home qmail_home
   action :create
 end
