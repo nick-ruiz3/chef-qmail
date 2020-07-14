@@ -66,6 +66,7 @@ node['qmail']['remove_service_mtas'].each do |pkg|
 end
 
 execute 'chown -R daemon:daemon /var/run/courier'
+execute 'chmod -R g+w /var/run/courier'
 
 template '/etc/courier/authldaprc' do
   source 'authldaprc.erb'
