@@ -168,7 +168,7 @@ bash 'download-compilation-qmail-src-ldap' do
   user 'root'
   cwd node['qmail']['src_packager']
   code <<-EOH
-  git clone  https://github.com/sitle/qmail-src-ldap.git
+  git clone  https://github.com/stephaneLII/qmail-src-ldap.git
   cd qmail-src-ldap
   make setup check
   chmod a+x #{config_fast_command}
@@ -179,7 +179,9 @@ end
 ##################################
 # Creation du script de controle qmailctl
 ##################################
-
+# execute "sudo mkdir -p /var/qmail/bin"
+# execute "sudo mkdir -p /var/qmail/control"
+# execute "sudo mkdir -p /var/qmail/alias"
 template "#{qmail_home}/bin/qmailctl" do
   source 'qmailctl.erb'
   owner 'root'
