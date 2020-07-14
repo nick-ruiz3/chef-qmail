@@ -179,9 +179,9 @@ end
 ##################################
 # Creation du script de controle qmailctl
 ##################################
-# execute "sudo mkdir -p /var/qmail/bin"
-# execute "sudo mkdir -p /var/qmail/control"
-# execute "sudo mkdir -p /var/qmail/alias"
+ execute "sudo mkdir -p #{qmail_home}/bin"
+ execute "sudo mkdir -p #{qmail_home}/control"
+ execute "sudo mkdir -p #{qmail_home}/alias"
 template "#{qmail_home}/bin/qmailctl" do
   source 'qmailctl.erb'
   owner 'root'
