@@ -67,44 +67,51 @@ user 'vuser' do
 end
 
 user 'alias' do
-  gid 'nofiles'
-  home '/var/qmail/alias'
+  gid 'qmail'
+  uid 64010
+  home "#{qmail_home}/alias"
   action :create
 end
 
 user 'qmaild' do
   gid 'nofiles'
-  home '/var/qmail'
+  uid 64011
+  home qmail_home
   action :create
 end
 
 user 'qmaill' do
   gid 'nofiles'
-  home '/var/qmail'
+  uid 64015
+  home qmail_home
   action :create
 end
 
 user 'qmailp' do
   gid 'nofiles'
-  home '/var/qmail'
+  uid 64016
+  home qmail_home
   action :create
 end
 
 user 'qmailq' do
   gid 'qmail'
-  home '/var/qmail'
+  uid 64014
+  home qmail_home
   action :create
 end
 
 user 'qmailr' do
   gid 'qmail'
-  home '/var/qmail'
+  uid 64013
+  home qmail_home
   action :create
 end
 
 user 'qmails' do
   gid 'qmail'
-  home '/var/qmail'
+  ui 64012
+  home qmail_home
   action :create
 end
 template "/etc/systemd/system/svscan.service" do
