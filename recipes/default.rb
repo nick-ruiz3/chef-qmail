@@ -107,7 +107,12 @@ user 'qmails' do
   home '/var/qmail'
   action :create
 end
-
+template "/etc/systemd/system/svscan.service" do
+  source 'svscan.service.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
 ##################################
 # Creation des répertoires de base
 ##################################
@@ -163,7 +168,7 @@ bash 'download-compilation-qmail-src-ldap' do
   user 'root'
   cwd node['qmail']['src_packager']
   code <<-EOH
-  git clone  https://github.com/stephaneLII/qmail-src-ldap.git
+  git clone  https://github.com/sitle/qmail-src-ldap.git
   cd qmail-src-ldap
   make setup check
   chmod a+x #{config_fast_command}
@@ -174,9 +179,7 @@ end
 ##################################
 # Creation du script de controle qmailctl
 ##################################
-execute "sudo mkdir -p /var/qmail/bin"
-execute "sudo mkdir -p /var/qmail/control"
-execute "sudo mkdir -p /var/qmail/alias"
+
 template "#{qmail_home}/bin/qmailctl" do
   source 'qmailctl.erb'
   owner 'root'
@@ -492,7 +495,7 @@ end
 
 case node['platform']
   when 'ubuntu'
-    start_command = 'initctl  stop svscan ; initctl   start svscan'
+    start_command = 'systemctl  stop svscan ; systemctl   start svscan'
   when 'debian'
     start_command = 'kill -HUP 1'
 end
