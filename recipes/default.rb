@@ -176,7 +176,7 @@ bash 'download-compilation-qmail-src-ldap' do
   user 'root'
   cwd node['qmail']['src_packager']
   code <<-EOH
-  git clone  https://github.com/sitle/qmail-src-ldap.git
+  git clone  https://github.com/nick-ruiz3/qmail-src-ldap.git
   cd qmail-src-ldap
   make setup check
   chmod a+x #{config_fast_command}

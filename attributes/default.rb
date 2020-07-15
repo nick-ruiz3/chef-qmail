@@ -1,5 +1,5 @@
 default['qmail']['src_packager'] = '/usr/local/src'
-default['qmail']['qmail_home'] = '/var/lib/qmail'
+default['qmail']['qmail_home'] = '/var/qmail'
 default['qmail']['qmail_log'] = '/var/log/qmail'
 default['qmail']['qmail_service'] = '/service'
 default['qmail']['qmail_bals'] = '/data/mail'
@@ -23,7 +23,7 @@ default['qmail']['imapd_install'] = true
 default['qmail']['imapd_enable'] = false
 default['qmail']['pop3d_enable'] = false
 
-default['qmail']['me'] = "run-zombie.com"
+default['qmail']['me'] = node['fqdn']
 default['qmail']['defaultdelivery'] = './Maildir/'
 default['qmail']['concurrencyincoming'] = 300
 default['qmail']['concurrencremote'] = 300
