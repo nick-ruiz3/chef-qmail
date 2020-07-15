@@ -57,6 +57,7 @@ end
 
 group 'qmail' do
   action :create
+  gid 64010
 end
 
 user 'vuser' do
@@ -67,7 +68,7 @@ user 'vuser' do
 end
 
 user 'alias' do
-  gid 'qmail'
+  gid 'nofiles'
   uid 64010
   home "#{qmail_home}/alias"
   action :create
