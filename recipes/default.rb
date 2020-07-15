@@ -187,9 +187,28 @@ end
 ##################################
 # Creation du script de controle qmailctl
 ##################################
- execute "sudo mkdir -p #{qmail_home}/bin"
- execute "sudo mkdir -p #{qmail_home}/control"
- execute "sudo mkdir -p #{qmail_home}/alias"
+ 
+ directory "#{qmail_home}/bin" do
+   owner 'root'
+   group 'qmail'
+   mode '0755'
+   action :create
+   recursive true
+ end
+ directory "#{qmail_home}/control" do
+   owner 'root'
+   group 'qmail'
+   mode '0755'
+   action :create
+   recursive true
+ end
+ directory "#{qmail_home}/alias" do
+   owner 'root'
+   group 'qmail'
+   mode '0755'
+   action :create
+   recursive true
+ end
 template "#{qmail_home}/bin/qmailctl" do
   source 'qmailctl.erb'
   owner 'root'
