@@ -49,7 +49,7 @@ end
 %w( courier-authdaemon courier-authlib courier-authlib-ldap courier-ldap courier-imap gamin ).each do |pkg|
   package pkg do
     action [:remove, :install]
-    retries 5
+    retries 10
   end
 end
 
