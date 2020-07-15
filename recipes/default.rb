@@ -236,7 +236,13 @@ template "#{qmail_home}/control/concurrencylocal" do
   group 'root'
   mode '0644'
 end
-
+directory "#{qmail_home}/boot/qmail-smtpd" do
+  owner 'root'
+  group 'qmail'
+  mode '0755'
+  action :create
+  recursive true
+end
 template "#{qmail_home}/boot/qmail-smtpd/run" do
   source 'qmail-smtpd.run.erb'
   owner 'root'
@@ -332,7 +338,7 @@ template "#{qmail_home}/alias/.qmail-mailer-daemon" do
 end
 
 cookbook_file 'create_homedir' do
-  path "/var/qmail/bin/create_homedir"
+  path "#{qmail_home}/bin/create_homedir"
   action :create
   mode '0775'
   group 'qmail'
